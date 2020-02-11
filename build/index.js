@@ -6,3 +6,5 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const countFuel_1 = __importDefault(require("./modules/countFuel"));
 const modules_json_1 = __importDefault(require("./modules.json"));
 console.log(countFuel_1.default(modules_json_1.default));
+let totalFuel = [33583 /*(countFuel(sampleData)*/];
+console.log();
