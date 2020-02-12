@@ -8,7 +8,7 @@ function countFuel(masses) {
             let newFuel = calculateFuel(totalFuel[totalFuel.length - 1]);
             totalFuel.push(newFuel > 0 ? newFuel : 0);
         }
-        sum += totalFuel.reduce((acc, v) => { return acc + v; }, 0);
+        sum += totalFuel.reduce((acc, v) => acc + v, 0);
     }
     return sum;
 }
