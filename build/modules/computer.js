@@ -1,7 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-function compute(intcode) {
+function compute(intcode, inputs) {
     let i = 0;
+    intcode[1] = inputs[0];
+    intcode[2] = inputs[1];
     while (true) {
         switch (true) {
             case intcode[i] === 1:
@@ -13,7 +15,7 @@ function compute(intcode) {
                 intcode[intcode[i + 3]] = intcode[intcode[i + 1]] * intcode[intcode[i + 2]];
                 break;
             case intcode[i] === 99:
-                return intcode;
+                return intcode[0];
             default:
                 throw new Error(`Unknown opcode ${intcode[i]} at ${i},\n${JSON.stringify(intcode)}`);
         }
@@ -21,4 +23,16 @@ function compute(intcode) {
         i += 4;
     }
 }
-exports.default = compute;
+exports.compute = compute;
+function inverseCompute(intcode, output) {
+    let noun = 0;
+    while (noun < 100) {
+        for (let verb = 0; verb <= noun; verb++) {
+            if (compute([...intcode], [noun, verb]) === output)
+                return 100 * noun + verb;
+        }
+        noun++;
+    }
+    return 0;
+}
+exports.inverseCompute = inverseCompute;
